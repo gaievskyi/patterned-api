@@ -34,7 +34,7 @@ def create_user(
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
-    Create new user.
+    Create a new user.
     """
     user = crud.user.get_by_email(session, email=user_payload.email)
     if user:
@@ -99,7 +99,7 @@ def create_user_open(
     full_name: str = Body(None),
 ) -> Any:
     """
-    Create new user without the need to be logged in.
+    Create a new user without the need to be logged in.
     """
     if not settings.USERS_OPEN_REGISTRATION:
         raise HTTPException(

@@ -16,10 +16,8 @@ class CRUD(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     """
     CRUD object with default methods to Create, Read, Update, Delete.
 
-    **Parameters**
-
-    * `model`: A SQLAlchemy model class
-    * `schema`: A Pydantic model (schema) class
+    Args:
+        model: A SQLAlchemy model class
     """
 
     def __init__(self, model: Type[ModelType]):

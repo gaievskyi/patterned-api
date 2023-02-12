@@ -37,7 +37,7 @@ def create_item(
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
-    Create new item.
+    Create a new item.
     """
     item = crud.item.create_with_owner(
         db=db, obj_in=item_in, owner_id=current_user.id)

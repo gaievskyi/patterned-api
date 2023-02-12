@@ -3,7 +3,7 @@ from typing import Any, Dict, Optional, Union
 from sqlalchemy.orm import Session
 
 from core.security import get_password_hash, verify_password
-from crud import CRUD
+from crud.base import CRUD
 from models.user import User
 from schemas.user import UserCreate, UserUpdate
 
