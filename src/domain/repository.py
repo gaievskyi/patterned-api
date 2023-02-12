@@ -3,7 +3,7 @@ from typing import Any, Dict, Generic, Type, TypeVar
 from pydantic import BaseModel
 from adapter import Adapter
 
-from db.base import Base
+from src.db.base import Base
 
 ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)

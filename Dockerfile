@@ -1,18 +1,13 @@
-FROM python:3.10 as requirements-stage
+FROM --platform=linux/amd64 python:3.10
 
-WORKDIR /tmp
+WORKDIR /app
 
-RUN pip install poetry
+COPY pyproject.toml poetry.lock /app/
 
-COPY ./pyproject.toml ./poetry.lock* /tmp/
+RUN pip install poetry \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-dev --no-interaction --no-ansi
 
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
+COPY . /app/
 
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.11
-
-COPY --from=requirements-stage /tmp/requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app
-ENV PYTHONPATH=/app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

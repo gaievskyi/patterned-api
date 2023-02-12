@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from src import crud, models, schemas
 from src.api import deps
-from core.config import settings
+from src.core.config import settings
 
 router = APIRouter()
 

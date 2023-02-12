@@ -2,10 +2,10 @@ from typing import List
 
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
-from crud.base import CRUD
+from .base import CRUD
 
-from models.item import Item
-from schemas.item import ItemCreate, ItemUpdate
+from src.models.item import Item
+from src.schemas.item import ItemCreate, ItemUpdate
 
 
 class CRUDItem(CRUD[Item, ItemCreate, ItemUpdate]):
