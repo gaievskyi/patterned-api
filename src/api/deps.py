@@ -8,11 +8,11 @@ from sqlalchemy.orm import Session
 
 
 from src import crud, models, schemas
-from core import security, settings
+from core import config, security
 from db.session import SessionLocal
 
 reusable_oauth2 = OAuth2PasswordBearer(
-    tokenUrl=f"{settings.API_V1_STR}/login/access-token"
+    tokenUrl=f"{config.API_V1_STR}/login/access-token"
 )
 
 
@@ -29,7 +29,7 @@ def get_current_user(
 ) -> models.User:
     try:
         payload = jwt.decode(
-            token, settings.SECRET_KEY, algorithms=[security.ALGORITHM]
+            token, config.SECRET_KEY, algorithms=[security.ALGORITHM]
         )
         token_data = schemas.TokenPayload(**payload)
     except (jwt.JWTError, ValidationError):

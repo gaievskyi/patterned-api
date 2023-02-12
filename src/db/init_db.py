@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from src import crud, schemas
-from core.settings import settings
+from core.config import settings
 from db.base import Base
 from db.session import engine
 
